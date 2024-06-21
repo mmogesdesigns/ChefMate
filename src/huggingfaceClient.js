@@ -1,5 +1,18 @@
 import { pipeline } from "@huggingface/transformers";
 
-const imageToText = pipeline("image-classification", "path/to/your/model");
+const classifyImage = async(imageUrl) => {
+  // Initialize the image classification pipeline
+  const classifier = await pipeline(
+    "image-classification",
+    "Xenova/vit-base-patch16-224"
+  );
 
-export default imageToText;
+  // Run the classifier on the provided image URL
+  const output = await classifier(imageUrl);
+  return output
+}
+
+
+
+
+export default classifyImage;
